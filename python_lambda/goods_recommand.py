@@ -4,7 +4,7 @@ import boto3
 import requests
 from requests.auth import HTTPBasicAuth
 
-# TODO: 아래 값을 적절하게 수정하세요
+# recommand python file
 OPENSEARCH_HOST = 'https://localhost:9200'
 DB_HOST = 'localhost'
 

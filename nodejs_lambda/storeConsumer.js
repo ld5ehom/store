@@ -2,20 +2,20 @@ const mysql = require('mysql2/promise');
 const axios = require('axios');
 const AWS = require('aws-sdk');
 
-// TODO: 정보를 본인 계정에 맞게 변경
+// TODO: Change information to suit your account
 const mysqlHost =
   'store.cluster-c9piytoc4vtx.ap-northeast-2.rds.amazonaws.com';
 const openSearchHost =
-  'https://vpc-store-znt3kjbc5nszf3eib44pxdlwva.ap-northeast-2.es.amazonaws.com'; // OpenSearch 호스트 주소
+  'https://vpc-store-znt3kjbc5nszf3eib44pxdlwva.ap-northeast-2.es.amazonaws.com'; // OpenSearch id
 const verifyEmail = 'ld5ehom@gmail.com';
 const sendMailOff = true;
 
-// AWS SES 설정
+// AWS SES
 const ses = new AWS.SES({
   region: 'ap-northeast-2',
 });
 
-// MySQL 연결 정보
+// MySQL
 const connectionConfig = {
   host: mysqlHost,
   user: 'store',
@@ -23,8 +23,8 @@ const connectionConfig = {
   database: 'store',
 };
 
-// OpenSearch 연결 정보
-const openSearchIndex = 'goods-item'; // 인덱스 이름
+// OpenSearch
+const openSearchIndex = 'goods-item'; // index name
 const openSearchUrl = `${openSearchHost}`;
 const axiosConfig = {
   auth: {
@@ -33,7 +33,7 @@ const axiosConfig = {
   },
 };
 
-// Lambda 핸들러 함수
+// Lambda handler
 exports.handler = async (event) => {
   console.log('event= ', event);
   if (!event.Records) {
@@ -51,7 +51,7 @@ const processMessage = async (message) => {
   const goodsItemId = message.split('/')[0];
   const username = message.split('/')[1];
 
-  // MySQL 쿼리
+  // MySQL
   const queryString = 'SELECT * FROM goods_item WHERE id = ?';
   const connection = await mysql.createConnection(connectionConfig);
 
@@ -79,24 +79,24 @@ const sendMail = async (subject, body) => {
   if (sendMailOff) {
     return 'Success';
   }
-  // 이메일 속성 설정
+  // email
   const params = {
     Destination: {
-      ToAddresses: [verifyEmail], // 수신자 이메일 주소
+      ToAddresses: [verifyEmail],
     },
     Message: {
       Body: {
         Text: {
-          Data: body, // 이메일 내용
+          Data: body,
           Charset: 'UTF-8',
         },
       },
       Subject: {
-        Data: subject, // 이메일 제목
+        Data: subject, // email title
         Charset: 'UTF-8',
       },
     },
-    Source: verifyEmail, // 발신자 이메일 주소
+    Source: verifyEmail, // email address
   };
   await ses
     .sendEmail(params)

@@ -3,13 +3,13 @@
     "analysis": {
       "tokenizer": {
         "seunjeon": {
-          "type": "seunjeon_tokenizer"
+          "type": "taewook_tokenizer"
         }
       },
       "analyzer": {
         "korean": {
           "type": "custom",
-          "tokenizer": "seunjeon"
+          "tokenizer": "taewook"
         }
       }
     }

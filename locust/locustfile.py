@@ -1,6 +1,5 @@
 """
-- 설명: F/E에서 사용하는 STT API에 대해서만 테스트
-- 실행: `locust -f locustfile.py --config locust.conf`
+locust -f locustfile.py --config locust.conf
 """
 import json
 import random
@@ -18,7 +17,7 @@ class SearchTest(HttpUser):
     wait_time = constant(5)
     connection_timeout = constant(5)
     json_data = []
-    keywords = ["돈까스", "사시미", "고기", "킹크랩", "크랩", "국밥", "라떼"]
+    keywords = ["1", "2", "3", "4", "5", "6", "7"]
 
     def __init__(self, environment):
         super().__init__(environment)
