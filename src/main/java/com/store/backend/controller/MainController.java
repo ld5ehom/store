@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
     @GetMapping(value = "/")
     public String index(){
-        return "Welcome to the UCLA Store!";
+        return "Welcome to the UCLA Store!!";
     }
 }
 //http://localhost:8080/

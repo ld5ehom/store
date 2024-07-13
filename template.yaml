@@ -1,0 +1,52 @@
+# sam build
+# sam deploy --stack-name store-backend --s3-bucket lambda-package-$UID --capabilities CAPABILITY_IAM
+# sam list endpoints --output json --stack-name store-backend
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  StoreBackendApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: 'prod'
+  StoreBackendFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: arn:aws:iam::654654590487:role/store-lambda-role
+      CodeUri: .
+      Handler: com.store.backend.LambdaHandler::handleRequest
+      Runtime: java17
+      AutoPublishAlias: production
+      #      SnapStart:
+      #        ApplyOn: PublishedVersions
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        StoreBackendApi:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+            RestApiId:
+              Ref: StoreBackendApi
+        StoreBackendApiElse:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            RestApiId:
+              Ref: StoreBackendApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-
+        SubnetIds:
+          - subnet-
+          - subnet-
