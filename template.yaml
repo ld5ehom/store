@@ -1,6 +1,7 @@
-# sam build
-# sam deploy --stack-name store-backend --s3-bucket lambda-package-$UID --capabilities CAPABILITY_IAM
-# sam list endpoints --output json --stack-name store-backend
+# sam build --template-file /Users/teo/Desktop/store/template.yaml
+# sam deploy --stack-name store-backend --s3-bucket lambda-package-ld5ehom --capabilities CAPABILITY_IAM --region us-west-1 --template-file /Users/teo/Desktop/store/template.yaml
+# sam list endpoints --output json --stack-name store-backend --region us-west-1
+
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
@@ -13,9 +14,21 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: 'prod'
+
+  StoreBackendLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: StoreBackendLayer
+      Description: Dependencies for StoreBackendFunction
+      ContentUri: layer
+      CompatibleRuntimes:
+        - java17
+      LicenseInfo: 'MIT'
+
   StoreBackendFunction:
     Type: AWS::Serverless::Function
     Properties:
+      # AWS ID
       Role: arn:aws:iam::654654590487:role/store-lambda-role
       CodeUri: .
       Handler: com.store.backend.LambdaHandler::handleRequest
@@ -29,6 +42,8 @@ Resources:
       Environment:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Layers:
+        - !Ref StoreBackendLayer
       Events:
         StoreBackendApi:
           Type: Api
@@ -44,9 +59,13 @@ Resources:
             Method: ANY
             RestApiId:
               Ref: StoreBackendApi
+      #AWS VPC subnets
       VpcConfig:
+        # VPC Security groups store-default
         SecurityGroupIds:
-          - sg-
+          - sg-0c0c4766cd8ff348d
+
+        #VPC subnets
         SubnetIds:
-          - subnet-
-          - subnet-
+          - subnet-06f7a2634876bd843 #store-private-us-west-1a
+          - subnet-0852886e83b021e03 #store-private-us-west-1b

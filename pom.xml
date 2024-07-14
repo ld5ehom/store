@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -8,8 +9,9 @@
 		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.store</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>store-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend</name>
 	<description>Ucla Store project</description>
@@ -142,6 +144,12 @@
 				<version>3.4.1</version>
 				<configuration>
 					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<artifactSet>
+						<excludes>
+							<exclude>org.apache.tomcat.embed:*</exclude>
+							<!-- Add other exclusions here as needed -->
+						</excludes>
+					</artifactSet>
 				</configuration>
 				<executions>
 					<execution>
@@ -149,17 +157,28 @@
 						<goals>
 							<goal>shade</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.2</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
 						<configuration>
-							<artifactSet>
-								<excludes>
-									<exclude>org.apache.tomcat.embed:*</exclude>
-								</excludes>
-							</artifactSet>
+							<outputDirectory>${project.basedir}/layer/java</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
