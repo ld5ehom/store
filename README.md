@@ -61,4 +61,8 @@ sam list endpoints --output json --stack-name store-backend --region us-west-1
 ssh -i ~/Downloads/store.pem ec2-user@IP
 ```
 
+```angular2html
+brew service list
+```
+
 ### * All AWS data is deleted after testing
