@@ -65,4 +65,13 @@ ssh -i ~/Downloads/store.pem ec2-user@IP
 brew service list
 ```
 
+### MySQL
+```angular2html
+teo@TaeWookui-Macmini store % brew services start mysql
+==> Successfully started `mysql` (label: homebrew.mxcl.mysql)
+teo@TaeWookui-Macmini store % mysql -u root -p
+Enter password: store1!
+```
+
+
 ### * All AWS data is deleted after testing

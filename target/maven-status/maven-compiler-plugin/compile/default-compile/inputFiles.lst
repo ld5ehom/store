@@ -1,7 +1,10 @@
 /Users/teo/Desktop/store/src/main/java/com/store/backend/LambdaHandler.java
 /Users/teo/Desktop/store/src/main/java/com/store/backend/repository/UserRepository.java
 /Users/teo/Desktop/store/src/main/java/com/store/backend/BackendApplication.java
+/Users/teo/Desktop/store/src/main/java/com/store/backend/service/CognitoService.java
 /Users/teo/Desktop/store/src/main/java/com/store/backend/entity/User.java
 /Users/teo/Desktop/store/src/main/java/com/store/backend/controller/UserController.java
+/Users/teo/Desktop/store/src/main/java/com/store/backend/dto/LoginRequestDto.java
 /Users/teo/Desktop/store/src/main/java/com/store/backend/controller/MainController.java
 /Users/teo/Desktop/store/src/main/java/com/store/backend/config/SwaggerConfig.java
+/Users/teo/Desktop/store/src/main/java/com/store/backend/controller/AuthController.java
