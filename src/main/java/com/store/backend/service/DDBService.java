@@ -7,6 +7,7 @@ import software.amazon.awssdk.services.dynamodb.model.*;
 
 import java.util.*;
 
+// AWS DynamoDB
 @Service
 public class DDBService {
     private final String tableName = "purchase-history";
