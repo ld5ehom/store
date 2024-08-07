@@ -596,3 +596,4 @@ terraform/.idea
 terraform/.terraform
 .idea/
 terraform/.terraform.lock.hcl
+.DS_Store
