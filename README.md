@@ -1,7 +1,36 @@
-# Store Management System (BackEnd) 
-- ld5ehom.github.io/portfolio/
-- ld5ehom@gmail.com 
-- https://www.linkedin.com/in/ld5ehom
+# Store Management System (BackEnd)
+## Project Overview
+- This project is an online store developed using Spring Boot and AWS services, employing a microservices architecture (MSA) for scalable and efficient performance.
+- Designed and implemented a RESTful backend server enabling persistent storage in an online database using AWS services, including RDS for relational data, DynamoDB for NoSQL data (such as purchase history), and S3 for storage.
+- Utilized AWS Lambda for serverless computing and Cognito for user authentication.
+- Integrated AWS SNS, SQS, and SES for notifications, messaging, and email services.
+- Utilized: Java, Spring Boot, REST, RDS, DynamoDB, S3
+------------------
+## Milestones
+- M1: Core Functionality Development (Completed)
+- **M2: Integration with the store iOS app**
+------------------
+
+## Task List
+### M1: Core Functionality Development (Completed)
+- Implemented sign-up, login, and logout functionalities using AWS Cognito. 
+- Added product registration features using AWS S3. 
+- Added product purchase features using AWS DynamoDB (NoSQL). 
+- Created tables in MySQL using AWS RDS.
+- Implemented product information upload and search functionality using OpenSearch.
+
+
+### M2: Integration with the store iOS app
+
+**Integration with the store iOS app**
+- **Status** : Not Started
+- **Details** : Integrate the store iOS app with AWS
+
+
+------------------
+## Progress Tracking
+- **Current Phase** : Integration with the store iOS app
+- **Overall Progress** : M1: Core functionality development completed. Preparing for integration with the store iOS app.
 ------------------
 ## Reference Site
 - AWS Corretto: https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html
@@ -10,14 +39,7 @@
 - Terraform(plugin) : github.com/ohmyzsh/ohmyzsh/tree/master/plugins/terraform
 - Terraform install : https://developer.hashicorp.com/terraform/tutorials/aws-get-start/install-cli
 ------------------
-## Project Overview
-- This project is an online store developed using Spring Boot and AWS services, employing a microservices architecture (MSA) for scalable and efficient performance.
-- Designed and implemented a RESTful backend server enabling persistent storage in an online database using AWS services, including RDS for relational data, DynamoDB for NoSQL data (such as purchase history), and S3 for storage.
-- Utilized AWS Lambda for serverless computing and Cognito for user authentication.
-- Integrated AWS SNS, SQS, and SES for notifications, messaging, and email services.
-- Utilized: Java, Spring Boot, REST, RDS, DynamoDB, S3 
-------------------
-## Install 
+## Getting Started 
 ### - Homebrew
 ```angular2html
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
